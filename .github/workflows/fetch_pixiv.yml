@@ -1,0 +1,31 @@
+name: Fetch Pixiv Popular Illusts
+
+on:
+  schedule:
+    # 每 6 小時運行一次 (UTC 時間)
+    - cron: '0 */6 * * *'
+  workflow_dispatch: # 允許手動觸發
+
+jobs:
+  fetch-and-update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r ./scripts/requirements.txt
+
+      - name: Run Pixiv Fetcher Script
+        env:
+          PIXIV_REFRESH_TOKEN: ${{ secrets.PIXIV_REFRESH_TOKEN }}
+          GCP_SERVICE_ACCOUNT_CREDENTIALS: ${{ secrets.GCP_SERVICE_ACCOUNT_CREDENTIALS }}
+          SPREADSHEET_ID: ${{ secrets.SPREADSHEET_ID }}
+          WORKER_UPDATE_URL: ${{ secrets.WORKER_UPDATE_URL }}
+          WORKER_SECRET: ${{ secrets.WORKER_SECRET }}
+        run: python ./scripts/fetch_pixiv.py
