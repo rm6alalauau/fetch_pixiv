@@ -11,7 +11,7 @@ APPS_SCRIPT_SECRET = os.getenv('APPS_SCRIPT_SECRET')
 
 # --- 抓取配置 ---
 TARGET_ILLUST_COUNT = 500
-MAX_PAGES_TO_FETCH = 15
+MAX_PAGES_TO_FETCH = 20
 
 # --- 主邏輯 ---
 def main():
