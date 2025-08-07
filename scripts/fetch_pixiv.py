@@ -11,7 +11,7 @@ APPS_SCRIPT_SECRET = os.getenv('APPS_SCRIPT_SECRET')
 
 # --- 抓取配置 ---
 # 我們可以為不同排序方式設定不同的目標
-TARGET_POPULAR_COUNT = 500 # 抓取 300 張熱門作品
+TARGET_POPULAR_COUNT = 500 # 抓取 500 張熱門作品
 TARGET_NEWEST_COUNT = 200  # 抓取 200 張最新作品
 
 # --- 輔助函式：用於抓取特定排序的插圖 ---
