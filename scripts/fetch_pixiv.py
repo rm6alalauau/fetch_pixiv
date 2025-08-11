@@ -58,7 +58,7 @@ def main():
             # 根據 illust.illust_ai_type 的值來決定新欄位的內容
             # illust_ai_type == 2 代表是 AI 生成作品
             if illust.illust_ai_type == 2:
-                illust.is_ai = "ture"
+                illust.is_ai = "true"
             else:
                 illust.is_ai = "false"
         
