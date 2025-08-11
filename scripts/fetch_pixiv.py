@@ -25,7 +25,7 @@ def main():
         api.auth(refresh_token=PIXIV_REFRESH_TOKEN)
         print("✅ Pixiv API authentication successful.")
 
-        # 2. 【升級】循環抓取多頁熱門作品
+        # 2. 循環抓取多頁熱門作品 (維持不變)
         all_illusts = []
         json_result = api.search_illust('ブラウンダスト2', search_target='partial_match_for_tags', sort='popular_desc')
         page_count = 1
@@ -52,15 +52,26 @@ def main():
 
         print(f"✅ Finished fetching. Total unique illusts: {len(all_illusts)}")
         
-        # 3. 將【所有】數據 POST 到您的 Apps Script Web App
+        # 3. 【唯一修改處】直接在原始物件上新增 AI 判斷欄位
+        print("Adding AI-generated flag to each illust object...")
+        for illust in all_illusts:
+            # 根據 illust.illust_ai_type 的值來決定新欄位的內容
+            # illust_ai_type == 2 代表是 AI 生成作品
+            if illust.illust_ai_type == 2:
+                illust.is_ai = "ture"
+            else:
+                illust.is_ai = "false"
+        
+        # 4. 將【已添加欄位的】原始數據 POST 到您的 Apps Script Web App (維持不變)
         payload = {
             "secret": APPS_SCRIPT_SECRET,
-            "data": all_illusts 
+            "data": all_illusts # 直接使用被修改過的 all_illusts
         }
         headers = { "Content-Type": "application/json" }
         
         print(f"Posting {len(all_illusts)} illusts to Apps Script...")
-        response = requests.post(APPS_SCRIPT_URL, data=json.dumps(payload), headers=headers)
+        # 加上 ensure_ascii=False 確保中文字符正確傳輸
+        response = requests.post(APPS_SCRIPT_URL, data=json.dumps(payload, ensure_ascii=False), headers=headers)
         response.raise_for_status() # 確保請求成功
         
         print(f"✅ Successfully posted data to Apps Script. Response: {response.text}")
