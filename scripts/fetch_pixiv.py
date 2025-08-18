@@ -19,9 +19,9 @@ SEARCH_TASKS = [
         "target_count": 800  # 主要目標：抓取 800 篇熱門常規作品
     },
     {
-        "keyword": "BrownDust2Contest2025",
-        "sort": "date_desc",  # 比賽作品建議按最新排序，才能看到新參賽的
-        "target_count": 200  # 補充目標：抓取最多 200 篇最新的比賽作品
+        "keyword": "BrownDust2",
+        "sort": "date_desc",  # 按最新排序
+        "target_count": 200  # 補充目標：抓取最多 200 篇
     }
 ]
 
