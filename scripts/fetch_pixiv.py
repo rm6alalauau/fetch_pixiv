@@ -6,7 +6,7 @@ import time
 
 # --- 從 GitHub Secrets 讀取秘密 ---
 PIXIV_REFRESH_TOKEN = os.getenv('PIXIV_REFRESH_TOKEN')
-APPS_SCRIPT_URL = os.getenv('APPS_SCRIPT_URL2')
+APPS_SCRIPT_URL2 = os.getenv('APPS_SCRIPT_URL2')
 APPS_SCRIPT_SECRET = os.getenv('APPS_SCRIPT_SECRET')
 
 # --- 【新】抓取任務配置 ---
@@ -75,7 +75,7 @@ def fetch_and_add_illusts(api, task, all_illusts_map):
 
 # --- 主邏輯 (已重構) ---
 def main():
-    if not all([PIXIV_REFRESH_TOKEN, APPS_SCRIPT_URL, APPS_SCRIPT_SECRET]):
+    if not all([PIXIV_REFRESH_TOKEN, APPS_SCRIPT_URL2, APPS_SCRIPT_SECRET]):
         print("❌ Missing required environment variables. Aborting.")
         return
 
@@ -115,7 +115,7 @@ def main():
         headers = { "Content-Type": "application/json" }
         
         print(f"Posting {len(final_illusts)} illusts to Apps Script...")
-        response = requests.post(APPS_SCRIPT_URL, data=json.dumps(payload, ensure_ascii=False), headers=headers)
+        response = requests.post(APPS_SCRIPT_URL2, data=json.dumps(payload, ensure_ascii=False), headers=headers)
         response.raise_for_status()
         
         print(f"✅ Successfully posted data to Apps Script. Response: {response.text}")
