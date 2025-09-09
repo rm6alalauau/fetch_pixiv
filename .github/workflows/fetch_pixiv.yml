@@ -24,6 +24,6 @@ jobs:
       - name: Run Pixiv Fetcher Script
         env:
           PIXIV_REFRESH_TOKEN: ${{ secrets.PIXIV_REFRESH_TOKEN }}
-          APPS_SCRIPT_URL: ${{ secrets.APPS_SCRIPT_URL2 }}
+          APPS_SCRIPT_URL: ${{ secrets.APPS_SCRIPT_URL }}
           APPS_SCRIPT_SECRET: ${{ secrets.APPS_SCRIPT_SECRET }}
         run: python ./scripts/fetch_pixiv.py
