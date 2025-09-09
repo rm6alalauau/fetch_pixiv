@@ -6,7 +6,7 @@ import time
 
 # --- 從 GitHub Secrets 讀取秘密 ---
 PIXIV_REFRESH_TOKEN = os.getenv('PIXIV_REFRESH_TOKEN')
-APPS_SCRIPT_URL = os.getenv('APPS_SCRIPT_URL')
+APPS_SCRIPT_URL = os.getenv('APPS_SCRIPT_URL2')
 APPS_SCRIPT_SECRET = os.getenv('APPS_SCRIPT_SECRET')
 
 # --- 【新】抓取任務配置 ---
